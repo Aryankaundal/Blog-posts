@@ -1,73 +1,65 @@
-Blog Website
-A simple and extensible blog website built using Python and Flask. The project provides a platform where users can read, create, edit, and manage blog posts through a modern web interface.
+# Blog Website
 
-Features
-Create, edit, and delete blog posts​
+A simple and extensible blog website built using Python and Flask. This project lets users read, create, edit, and manage blog posts through a modern web interface.
 
-User registration and login functionality
+## Features
 
-Responsive design for desktop and mobile devices
+- Create, edit, and delete blog posts
+- User registration and login functionality
+- Responsive design for desktop and mobile devices
+- Markdown or rich text support in posts
+- Search and filter functionality
+- Admin dashboard for managing content
 
-Support for Markdown or rich text in posts
+## Tech Stack
 
-Search and filter through posts
+| Component           | Stack/Tool            |
+|---------------------|-----------------------|
+| Backend             | Python, Flask         |
+| Database            | SQLite / PostgreSQL   |
+| Frontend            | HTML, CSS, Bootstrap  |
+| ORM                 | SQLAlchemy            |
+| Authentication      | Flask-Login           |
 
-Admin dashboard for managing content
+## Getting Started
 
-Tech Stack
-Component	Stack/Tool
-Backend	Python, Flask
-Database	SQLite / PostgreSQL
-Frontend	HTML, CSS, Bootstrap
-ORM	SQLAlchemy
-Authentication	Flask-Login
-Getting Started
-Prerequisites
-Python 3.12 (Stick to 3.12 for compatibility)​
+### Prerequisites
 
-pip (Python package manager)
+- Python 3.12
+- pip (Python package manager)
 
-Installation
-Clone the Repository
+### Installation
 
-text
-git clone https://github.com/yourusername/blog-website.git
-cd blog-website
-Set Up Virtual Environment
+1. **Clone the Repository**
+    ```
+    git clone https://github.com/yourusername/blog-website.git
+    cd blog-website
+    ```
 
-text
-python3.12 -m venv .venv
-source .venv/bin/activate    # On Windows: .venv\Scripts\activate
-Install Dependencies
+2. **Set Up Virtual Environment**
+    ```
+    python3.12 -m venv .venv
+    source .venv/bin/activate    # On Windows: .venv\Scripts\activate
+    ```
 
-text
-pip install -r requirements.txt
-Set Up Database
+3. **Install Dependencies**
+    ```
+    pip install -r requirements.txt
+    ```
 
-text
-flask db init
-flask db migrate
-flask db upgrade
-Run the Application
+4. **Database Migration**
+    ```
+    flask db init
+    flask db migrate
+    flask db upgrade
+    ```
 
-text
-flask run
-The site will be available at http://localhost:5000.
+5. **Run the Application**
+    ```
+    flask run
+    ```
+    The site will be available at `http://localhost:5000`.
 
-Deployment
-To deploy on platforms like Render, set the PYTHON_VERSION to 3.12.0 in the environment variables or add a .python-version file in your repo:
+### Deployment
 
-text
-3.12.0
-Usage
-Register for a new user account
-
-Log in to create and manage posts
-
-Browse and search posts from other users
-
-Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-License
-This project is licensed under the MIT License.
+To deploy on platforms like Render, set the `PYTHON_VERSION` to `3.12.0` in the environment variables or add a `.python-version` file:
