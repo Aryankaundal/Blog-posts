@@ -1,5 +1,5 @@
 from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash
+from flask import Flask, abort, render_template, redirect, url_for, flash,request
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
@@ -160,11 +160,18 @@ def logout():
     return redirect(url_for('get_all_posts'))
 
 
-@app.route('/')
+@app.route("/")
 def get_all_posts():
-    result = db.session.execute(db.select(BlogPost))
-    posts = result.scalars().all()
-    return render_template("index.html", all_posts=posts,current_user=current_user)
+    page = request.args.get("page", 1, type=int)
+    per_page = 5   # number of posts per page
+
+    posts = BlogPost.query.order_by(BlogPost.id.desc()).paginate(
+        page=page,
+        per_page=per_page
+    )
+
+    return render_template("index.html", posts=posts)
+
 
 
 #Allow logged-in users to comment on posts
