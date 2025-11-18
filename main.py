@@ -10,7 +10,9 @@ from sqlalchemy import Integer, String, Text
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 # Import your forms from the forms.py
-from forms import CreatePostForm,RegisterForm,LoginForm,CommentForm
+from forms import CreatePostForm,RegisterForm,LoginForm,CommentForm,ContactForm
+import smtplib
+from email.mime.text import MIMEText
 import os
 
 app = Flask(__name__)
@@ -250,9 +252,39 @@ def about():
     return render_template("about.html",current_user=current_user)
 
 
-@app.route("/contact")
+@app.route("/contact",methods=["GET","POST"])
 def contact():
-    return render_template("contact.html",current_user=current_user)
+    form=ContactForm()
+    msg_sent=False
+    if form.validate_on_submit():
+        sender_email=os.environ.get("MY_EMAIL")
+        sender_password=os.environ.get("MY_PASS")
+        reciever_email=os.environ.get("MY_EMAIL")
+        body=f"""New Contact Form Submission: 
+        Name:{form.name.data}
+        Email:{form.email.data} 
+        Message:
+        
+        {form.message.data}
+        """
+        msg=MIMEText(body)
+        msg["Subject"]="New Contact Form Message"
+        msg["From"]=sender_email
+        msg["To"]=reciever_email
+        try:
+            with smtplib.SMTP("smtp.gmail.com",587)as smtp:
+                smtp.starttls()
+                smtp.login(sender_email,sender_password)
+                smtp.send_message(msg)
+
+            flash("Message sent successfully!","success")
+        except Exception as e:
+            flash("Failed to send message.Try again later.","danger")
+            print("Error:",e)
+            
+        msg_sent=True
+        return redirect(url_for('contact'))
+    return render_template("contact.html",form=form,msg_sent=msg_sent)
 
 
 if __name__ == "__main__":

@@ -27,3 +27,11 @@ window.addEventListener('DOMContentLoaded', () => {
         scrollPos = currentTop;
     });
 })
+setTimeout(() => {
+  document.querySelectorAll(".alert").forEach(alert => {
+    alert.classList.add("flash-fade");
+    alert.style.opacity = "0";
+
+    setTimeout(() => alert.remove(), 800);
+  });
+}, 3000);
