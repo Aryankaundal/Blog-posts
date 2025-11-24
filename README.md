@@ -2,6 +2,9 @@
 
 A simple and extensible blog website built using Python and Flask. This project lets users read, create, edit, and manage blog posts through a modern web interface.
 
+**Live Demo:** https://blogzz-7bx4.onrender.com
+
+
 ## Features
 
 - Create, edit, and delete blog posts
